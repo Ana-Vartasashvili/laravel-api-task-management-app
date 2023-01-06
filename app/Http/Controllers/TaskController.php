@@ -61,10 +61,21 @@ class TaskController extends Controller
      * Remove the specified resource from storage.
      *
      * @param int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response|int
      */
     public function destroy($id)
     {
-        //
+       return Task::destroy($id);
+    }
+
+    /**
+     * Search for a title.
+     *
+     * @param string $title
+     * @return \Illuminate\Http\Response|int
+     */
+    public function search($title)
+    {
+       return Task::where('title', 'like', '%'.$title.'%')->get();
     }
 }

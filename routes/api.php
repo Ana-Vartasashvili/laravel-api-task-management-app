@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::resource('tasks', TaskController::class);
+Route::get('/tasks/search/{title}', [TaskController::class, 'search']);
 
 //Route::get('/tasks', [TaskController::class, 'index']);
 //Route::post('/tasks', [TaskController::class, 'store']);
