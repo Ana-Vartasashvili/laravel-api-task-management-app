@@ -39,7 +39,7 @@ class TaskController extends Controller
      */
     public function show($id)
     {
-        //
+        return Task::find($id);
     }
 
     /**
@@ -51,7 +51,10 @@ class TaskController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $product = Task::find($id);
+        $product->update($request->all());
+
+        return $product;
     }
 
     /**
