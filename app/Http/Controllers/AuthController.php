@@ -11,7 +11,7 @@ class AuthController extends Controller
     {
         $fields = $request->validate([
             'name' => 'required|string',
-             'email' => 'required|string|unique:users,email',
+            'email' => 'required|string|unique:users,email',
             'password' => 'required|string|min:8|confirmed'
         ]);
 
@@ -21,7 +21,7 @@ class AuthController extends Controller
             'password' => bcrypt($fields['password'])
         ]);
 
-        $token = $user->createToken('myapptoken')->plainTextToken;
+        $token = $user->createToken('mytoken')->plainTextToken;
 
         $response = [
             'user' => $user,
@@ -29,5 +29,14 @@ class AuthController extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function logout(Request $request)
+    {
+        auth()->user()->tokens()->delete();
+
+        return [
+            'message' => 'Logged out'
+        ];
     }
 }

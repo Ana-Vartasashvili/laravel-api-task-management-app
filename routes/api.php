@@ -22,9 +22,9 @@ Route::resource('tasks', TaskController::class);
 Route::get('/tasks/search/{title}', [TaskController::class, 'search']);
 
 Route::post('/register', [AuthController::class, 'register']);
-//Route::group(['middleware' => ['auth:sanctum']], function () {
-//    Route::get('/tasks/search/{title}', [TaskController::class, 'search']);
-//});
+Route::group(['middleware' => ['auth:sanctum']], function () {
+    Route::post('/logout', [AuthController::class, 'logout']);
+});
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
